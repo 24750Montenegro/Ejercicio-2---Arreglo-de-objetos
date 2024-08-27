@@ -1,8 +1,18 @@
+/*
+//  @ Project : Ejercicio 2 Arreglos de objetos
+//  @ File Name : Proyecto.java
+//  @ Date : 23/08/2014
+//  @ Author : Juan Montenegro
+//
+//
+ */
+
 import java.util.ArrayList;
 import java.util.Date;
 
 
 public class Proyecto {
+    //Atributos
     private String codigo;
     private String nombre;
     private String categoria;
@@ -11,6 +21,7 @@ public class Proyecto {
     private Date fechaLimite;
     private ArrayList<Tarea> tareas;
 
+    //Getters&setters
     public String getCodigo() {
         return codigo;
     }
@@ -55,7 +66,7 @@ public class Proyecto {
     }
 
 
-
+    //Constructores
     public Proyecto(String codigo, String nombre, String categoria, Desarrollador desarrolladorJunior,
             Desarrollador desarrolladorSenior, Date fechaLimite, ArrayList<Tarea> tareas) {
         this.codigo = codigo;
@@ -73,11 +84,19 @@ public class Proyecto {
 
     //Métodos
     public void agregarTarea(Tarea tarea){
-
+        tareas.add(tarea);
     }
     
-    public void generarReporteProgreso(){
-        
+    public String generarReporteProgreso(){
+        String reporte = "PROYECTO: " + nombre;
+        reporte += "\n CODIGO:"+ codigo;
+        reporte += "\n TAREAS:";
+
+        for (Tarea tarea : tareas) {
+            reporte += "\n " + tarea;
+        }
+
+        return reporte;
     }
 
     

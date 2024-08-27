@@ -1,13 +1,24 @@
+/*
+//  @ Project : Ejercicio 2 Arreglos de objetos
+//  @ File Name : Tarea.java
+//  @ Date : 23/08/2014
+//  @ Author : Juan Montenegro
+//
+//
+ */
+
 public class Tarea {
+    //Atributos
     private String codigo;
     private String nombre;
     private String tipo;
     private int tiempoEstimado;
     private int tiempoReal;
     private String estado;
-    private String priioridad;
+    private String prioridad;
     private Desarrollador desarrolladorAsignado;
 
+    //Getters&setters
     public String getCodigo() {
         return codigo;
     }
@@ -44,11 +55,11 @@ public class Tarea {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public String getPriioridad() {
-        return priioridad;
+    public String getprioridad() {
+        return prioridad;
     }
-    public void setPriioridad(String priioridad) {
-        this.priioridad = priioridad;
+    public void setprioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
     public Desarrollador getDesarrolladorAsignado() {
         return desarrolladorAsignado;
@@ -57,28 +68,38 @@ public class Tarea {
         this.desarrolladorAsignado = desarrolladorAsignado;
     }
 
+    //Constructores
     public Tarea(String codigo, String nombre, String tipo, int tiempoEstimado, int tiempoReal, String estado,
-            String priioridad, Desarrollador desarrolladorAsignado) {
+            String prioridad, Desarrollador desarrolladorAsignado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.tipo = tipo;
         this.tiempoEstimado = tiempoEstimado;
         this.tiempoReal = tiempoReal;
         this.estado = estado;
-        this.priioridad = priioridad;
+        this.prioridad = prioridad;
         this.desarrolladorAsignado = desarrolladorAsignado;
     }
+
     public Tarea() {
     }
 
     //Métodos
     public void actualizarEstado(String nuevoEstado){
-
+        setEstado(nuevoEstado);
     }
+
     public void asignarDesarrollador(Desarrollador desarrollador){
-        
+        setDesarrolladorAsignado(desarrollador);
     }
+  
 
     
+    //ToString 
     
+      @Override
+    public String toString() {
+        return  codigo + " | " + nombre + ": Tipo:" + tipo + "Estado: "+estado + ", Prioridad: " + prioridad
+                + " Asignado a:" + desarrolladorAsignado;
+    }
 }

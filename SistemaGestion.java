@@ -36,6 +36,8 @@ public class SistemaGestion {
         this.desarrolladores = desarrolladores;
     }
     public SistemaGestion() {
+        this.proyectos = new ArrayList<>();
+        this.desarrolladores = new ArrayList<>();
     }
 
 
@@ -48,21 +50,43 @@ public class SistemaGestion {
         desarrolladores.add(desarrollador);
     }
 
-    public void agregarTareaAProyecto(String codigoProyecto, Tarea tarea) {
-        for (Proyecto i : proyectos) {
-            if (i.getCodigo().equals(codigoProyecto)) {
-                i.getTareas().add(tarea);
-            }
-        }
-    }
     
-
-    public void actualizarEstadoTarea(String codigoProyecto, String codigoTarea, String nuevoEstado) {
+    public String agregarTareaAProyecto(String codigoProyecto, Tarea tarea, Desarrollador dev) {
+        int tiempo = 0;
+        
+        // Calcular el tiempo total estimado del desarrollador asignado
+        for (Tarea t : dev.getTareasAsignadas()) {
+            tiempo += t.getTiempoEstimado();
+        }
+    
+        // Verificar si al agregar esta tarea se exceden las 40 horas
+        if (tiempo + tarea.getTiempoEstimado() > 40) {
+            return "ERROR: Esta tarea excede la estimación máxima de 40 horas por programador";
+        }
+        
+        // Buscar el proyecto y agregar la tarea
         for (Proyecto p : proyectos) {
             if (p.getCodigo().equals(codigoProyecto)) {
+                p.agregarTarea(tarea);
+                dev.getTareasAsignadas().add(tarea);
+                return "Tarea agregada exitosamente";
+            }
+        }
+        
+        return "Error: Proyecto no encontrado";
+    }
+    
+    
+
+    public void actualizarEstadoTarea(String codigoProyecto, String codigoTarea, String nuevoEstado, int tiempoReal) {
+        for (Proyecto p : proyectos) {
+            //buscar proyecto por codigo
+            if (p.getCodigo().equals(codigoProyecto)) {
                 for (Tarea t : p.getTareas()) {
+                    //buscar tarea por codigo
                     if (t.getCodigo().equals(codigoTarea)) {
-                        t.setEstado(nuevoEstado);
+                        //actualizar estado de la tarea
+                        t.actualizarEstado(nuevoEstado, tiempoReal);
                     }
                 }
             }

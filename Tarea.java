@@ -69,13 +69,12 @@ public class Tarea {
     }
 
     //Constructores
-    public Tarea(String codigo, String nombre, String tipo, int tiempoEstimado, int tiempoReal, String estado,
+    public Tarea(String codigo, String nombre, String tipo, int tiempoEstimado, String estado,
             String prioridad, Desarrollador desarrolladorAsignado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.tipo = tipo;
         this.tiempoEstimado = tiempoEstimado;
-        this.tiempoReal = tiempoReal;
         this.estado = estado;
         this.prioridad = prioridad;
         this.desarrolladorAsignado = desarrolladorAsignado;
@@ -85,8 +84,9 @@ public class Tarea {
     }
 
     //Métodos
-    public void actualizarEstado(String nuevoEstado){
+    public void actualizarEstado(String nuevoEstado, int tiempoReal){
         setEstado(nuevoEstado);
+        setTiempoReal(tiempoReal);
     }
 
     public void asignarDesarrollador(Desarrollador desarrollador){
@@ -99,7 +99,7 @@ public class Tarea {
     
       @Override
     public String toString() {
-        return  codigo + " | " + nombre + ": Tipo:" + tipo + "Estado: "+estado + ", Prioridad: " + prioridad
-                + " Asignado a:" + desarrolladorAsignado;
+        return  codigo + " | " + nombre + ": Tipo:" + tipo + ", Estado: "+estado + ", Prioridad: " + prioridad
+                + ", Asignado a: " + desarrolladorAsignado;
     }
 }

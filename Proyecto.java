@@ -87,12 +87,14 @@ public class Proyecto {
         tareas.add(tarea);
     }
     
+    //reporte de progreso del proyecto
     public String generarReporteProgreso(){
         String reporte = "PROYECTO: " + nombre;
         reporte += "\n CODIGO:"+ codigo;
         reporte += "\n TAREAS:";
 
         for (Tarea tarea : tareas) {
+            //agregar tareas del proyecto
             reporte += "\n " + tarea;
         }
 

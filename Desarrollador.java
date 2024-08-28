@@ -41,6 +41,7 @@ public class Desarrollador {
     public Desarrollador(String nombre, String nivel) {
         this.nombre = nombre;
         this.nivel = nivel;
+        this.tareasAsignadas = new ArrayList<>();
     }
     public Desarrollador() {
     }
@@ -55,7 +56,7 @@ public class Desarrollador {
     //toString
     @Override
     public String toString() {
-        return "Desarrollador " + nivel + " -" + nombre ;
+        return "Desarrollador " + nivel + " - " + nombre ;
     }
     
     
